@@ -1,0 +1,18 @@
+.container-forum {
+    &__container-post {
+        background: #FFFFFF;
+        box-shadow: 0px 8px 16px rgb(110 120 130 / 12%);
+        border-radius: 15px;
+        padding: 1.5rem 2rem;
+
+        &__container-reaction {
+            border-top: 1px solid #F4F4F4;
+            padding-top: 1rem;
+        }
+
+        &__name-profile {
+            color: #D00170;
+        }
+    }
+
+}
