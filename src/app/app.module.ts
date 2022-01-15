@@ -4,9 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ForumComponent } from './forum/forum.component';
-
-// Library Ng Zorro
-import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { CommentsComponent } from './forum/comments/comments.component';
 import { PublishComponent } from './forum/publish/publish.component';
 
@@ -20,7 +17,6 @@ import { PublishComponent } from './forum/publish/publish.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NzCommentModule,
     FormsModule
   ],
   providers: [],
