@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-forum',
-  templateUrl: './forum.component.html',
-  styleUrls: ['./forum.component.scss']
+  selector: 'app-comments',
+  templateUrl: './comments.component.html',
+  styleUrls: ['./comments.component.scss']
 })
-export class ForumComponent implements OnInit {
+export class CommentsComponent implements OnInit {
 
   isVisible:boolean = false;
   inputPublish:string = '';
@@ -23,4 +23,5 @@ export class ForumComponent implements OnInit {
     this.isVisible = false;
     this.inputPublish = '';
   }
+
 }

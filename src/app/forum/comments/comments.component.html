@@ -1,0 +1,47 @@
+<div class="grid-container container-forum margin-top-1">
+    <div class="grid-x">
+        <div class="cell container-forum__container-box margin-bottom-1">
+            <div class="container-forum__container-publish">
+                <input type="text" 
+                       class="container-forum__publish"
+                       [ngClass]="{'container-forum__publish--border' : isVisible}"
+                       placeholder="Escribe Aquí tu estado"
+                       [(ngModel)]="inputPublish"
+                       (click)="valuechange()">
+            </div>
+            <div *ngIf="isVisible" class="text-center margin-top-1">
+                <button class="container-forum__button-publish"
+                        (click)="publishState()">Publicar</button>
+            </div>
+        </div>
+        <div class="cell container-forum__container-post">
+            <div class="grid-x margin-bottom-1">
+                <div class="cell small-1">
+                    img
+                </div>
+                <div class="cell small-11">
+                    <div class="container-forum__container-post__name-profile">
+                        Liliana Jimenez
+                    </div>
+                    <p  class="container-forum__container-post__time">Hace 45 minutos</p>
+                    <p class="container-forum__container-post__comments">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="cell small-6 container-forum__container-post__name-profile">
+                    13 likes
+                </div>
+                <div class="cell small-6 text-right container-forum__container-post__name-profile">
+                    3 comentarios
+                </div>
+            </div>
+            <div class="grid-x container-forum__container-post__container-reaction">
+                <div class="cell small-6 container-forum__container-post__text-reaction">
+                    Reaccionar
+                </div>
+                <div class="cell small-6 text-right container-forum__container-post__text-reaction">
+                    Comentar
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
