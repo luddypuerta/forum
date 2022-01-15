@@ -12,6 +12,20 @@
 
         &__name-profile {
             color: #D00170;
+            font-weight: bold;
+        }
+
+        &__time {
+            margin: 0;
+            font-size: 10px;
+        }
+
+        &__comments {
+            line-height: 16px;
+        }
+
+        &__text-reaction {
+            font-weight: bold;
         }
     }
 
