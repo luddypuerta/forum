@@ -8,12 +8,14 @@ import { ForumComponent } from './forum/forum.component';
 // Library Ng Zorro
 import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { CommentsComponent } from './forum/comments/comments.component';
+import { PublishComponent } from './forum/publish/publish.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ForumComponent,
-    CommentsComponent
+    CommentsComponent,
+    PublishComponent
   ],
   imports: [
     BrowserModule,

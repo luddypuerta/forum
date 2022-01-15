@@ -1,0 +1,39 @@
+.container-box {
+    left: 20px;
+    top: 30px;
+    border-radius: 15px;
+    padding: 20px;
+    background: #FFFFFF;
+
+    &__publish{
+        height: 36px;
+        left: 20px;
+        top: 20px;
+        border-radius: 100px;
+        padding: 10px 20px 10px 20px;
+        margin: 0;
+        
+        &--border{
+            border-color: #D00170;
+        }
+    }
+
+    &__container-publish{
+        display: flex;
+        justify-content: center;
+    }
+
+    &__button-publish{
+        height: 28px;
+        width: 80px;
+        left: 0px;
+        top: 0px;
+        border-radius: 3px;
+        padding: 5px, 15px, 5px, 15px;
+        background: #D00170;
+        color: white;
+        cursor: pointer;
+    }
+
+    
+}

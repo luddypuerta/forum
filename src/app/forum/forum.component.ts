@@ -7,20 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumComponent implements OnInit {
 
-  isVisible:boolean = false;
-  inputPublish:string = '';
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  valuechange(){
-    this.isVisible = true;
-  }
-
-  publishState(){
-    this.isVisible = false;
-    this.inputPublish = '';
-  }
 }
