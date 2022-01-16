@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ForumService } from '../services/forum.service';
 
 @Component({
   selector: 'app-publish',
@@ -10,7 +11,7 @@ export class PublishComponent implements OnInit {
   isVisible:boolean = false;
   inputPublish:string = '';
 
-  constructor() { }
+  constructor(private forumService: ForumService) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +23,16 @@ export class PublishComponent implements OnInit {
   publishState(){
     this.isVisible = false;
     this.inputPublish = '';
+  }
+  
+  handlerAddComment() {
+    const valueInput = this.inputPublish.trim()
+    if ( valueInput.length === 0 ) { return; }
+    
+    this.forumService.addNewComment(valueInput);
+
+    this.publishState()
+
   }
 
 }
