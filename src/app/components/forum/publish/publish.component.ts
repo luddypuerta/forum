@@ -18,6 +18,7 @@ export class PublishComponent implements OnInit {
 
   valuechange(){
     this.isVisible = true;
+    console.log(this.isVisible);
   }
 
   publishState(){
@@ -27,7 +28,8 @@ export class PublishComponent implements OnInit {
   
   handlerAddComment() {
     const valueInput = this.inputPublish.trim()
-    if ( valueInput.length === 0 ) { return; }
+    console.log(valueInput);
+    if ( !valueInput.length ) return; 
     
     this.forumService.addNewComment(valueInput);
 
