@@ -8,6 +8,8 @@ import { ForumService } from '../services/forum.service';
 })
 export class CommentsComponent implements OnInit {
 
+  inputCommentResponse: string = ''
+
   constructor(private forumService:ForumService) { }
 
   ngOnInit(): void {
@@ -15,6 +17,19 @@ export class CommentsComponent implements OnInit {
 
   get comments() {
     return this.forumService.comments
+  }
+
+  clearState(){
+    this.inputCommentResponse = ''
+  }
+  
+  handlerAddNewCommentResponse(idComment: string) {
+    const valueInput = this.inputCommentResponse.trim()
+    if ( valueInput.length === 0 ) { return; }
+
+    this.forumService.addNewCommentResponse(idComment, this.inputCommentResponse)
+
+    this.clearState()
   }
 
 }

@@ -27,8 +27,7 @@ export class PublishComponent implements OnInit {
   }
   
   handlerAddComment() {
-    const valueInput = this.inputPublish.trim()
-    console.log(valueInput);
+    const valueInput = this.inputPublish.trim();
     if ( !valueInput.length ) return; 
     
     this.forumService.addNewComment(valueInput);

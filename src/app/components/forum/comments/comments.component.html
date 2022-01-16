@@ -17,7 +17,7 @@
                 {{ comment.reactions }} likes
             </div>
             <div class="cell small-6 text-right container-post__comment-post">
-                {{ comment.commentsChild }} comentarios
+                {{ comment.quantityCommentsResponse }} comentarios
             </div>
         </div>
         <div class="grid-x container-post__container-reaction">
@@ -50,31 +50,23 @@
             </div>
         </div>
     </div>
-    <div class="container-comment" style="display: none;">
+    <div *ngFor="let commentResponse of comment.commentsResponse"
+     class="container-comment"
+     >
         <div class="grid-x margin-bottom-1">
             <div class="cell small-1">
                 img
             </div>
             <div class="cell small-11">
                 <div class="container-comment__name-profile">
-                    Elena Perez
+                    {{ commentResponse.nameSender }}
                 </div>
-                <p class="container-comment__comments">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p class="container-comment__time">Hace 45 minutos</p>
-            </div>
-        </div>
-        <div class="grid-x margin-bottom-1">
-            <div class="cell small-1">
-                img
-            </div>
-            <div class="cell small-11">
-                <div class="container-comment__name-profile">
-                    Francisco Gomez
-                </div>
-                <p class="container-comment__comments">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p class="container-comment__time">Hace 45 minutos</p>
+                <p class="container-comment__comments">
+                    {{ commentResponse.message }}
+                </p>
+                <p class="container-comment__time">
+                    {{ commentResponse.date }}
+                </p>
             </div>
         </div>
     </div>
@@ -82,10 +74,16 @@
         <div class="container-box__container-publish">
             <input type="text" 
                    class="container-box__publish"
-                   placeholder="Escribe un comentario">
+                   placeholder="Escribe un comentario"
+                   [(ngModel)]="inputCommentResponse">
         </div>
         <div class="text-center margin-top-1">
-            <button class="container-box__button-publish">Publicar</button>
+            <button 
+            class="container-box__button-publish"
+            (click)="handlerAddNewCommentResponse(comment.id)"
+            >
+            Publicar
+        </button>
         </div>
     </div>
 </div>
