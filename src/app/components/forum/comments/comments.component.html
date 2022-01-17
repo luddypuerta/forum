@@ -1,10 +1,10 @@
-<div *ngFor="let comment of comments" class="container-principal">
+<div class="container-principal">
     <div class="container-post">
         <div class="grid-x margin-bottom-1">
-            <div class="cell small-1">
+            <div class="cell small-2 medium-1">
                 img
             </div>
-            <div class="cell small-11">
+            <div class="cell small-10 medium-11">
                 <div class="container-post__name-profile">
                     {{ comment.nameSender }}
                 </div>
@@ -16,7 +16,11 @@
             <div class="cell small-6 container-post__like-post">
                 {{ comment.reactions }} likes
             </div>
-            <div class="cell small-6 text-right container-post__comment-post">
+            <div 
+            *ngIf="comment.quantityCommentsResponse > 0"
+            class="cell small-6 text-right container-post__comment-post"
+            (click) = "toggleAllComments()"
+            >
                 {{ comment.quantityCommentsResponse }} comentarios
             </div>
         </div>
@@ -45,32 +49,36 @@
                 </div>
             </div>
             <div class="cell small-6 text-right container-post__text-reaction">
-                <button> Comentar </button>
-                
+                <button (click)="toggleNewCommentResponse()">
+                    Comentar
+                </button>
             </div>
         </div>
     </div>
-    <div *ngFor="let commentResponse of comment.commentsResponse"
-     class="container-comment"
-     >
-        <div class="grid-x margin-bottom-1">
-            <div class="cell small-1">
-                img
-            </div>
-            <div class="cell small-11">
-                <div class="container-comment__name-profile">
-                    {{ commentResponse.nameSender }}
-                </div>
-                <p class="container-comment__comments">
-                    {{ commentResponse.message }}
-                </p>
-                <p class="container-comment__time">
-                    {{ commentResponse.date }}
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="container-box">
+    <ng-container *ngIf="isShowAllComments">
+        <div *ngFor="let commentResponse of comment.commentsResponse"
+        class="container-comment"
+        >
+           <div class="grid-x margin-bottom-1">
+               <div class="cell small-2 medium-1">
+                   img
+               </div>
+               <div class="cell small-10 medium-11">
+                   <div class="container-comment__name-profile">
+                       {{ commentResponse.nameSender }}
+                   </div>
+                   <p class="container-comment__comments">
+                       {{ commentResponse.message }}
+                   </p>
+                   <p class="container-comment__time">
+                       {{ commentResponse.date }}
+                   </p>
+               </div>
+           </div>
+       </div>
+    </ng-container>
+
+    <div *ngIf="isShowAddCommentResponse" class="container-box">
         <div class="container-box__container-publish">
             <input type="text" 
                    class="container-box__publish"

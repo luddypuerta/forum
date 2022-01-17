@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Comment } from '../interfaces/comment.interface';
 import { ForumService } from '../services/forum.service';
 
 @Component({
@@ -8,15 +9,15 @@ import { ForumService } from '../services/forum.service';
 })
 export class CommentsComponent implements OnInit {
 
+  @Input() comment!: Comment;
+
   inputCommentResponse: string = ''
+  isShowAllComments: boolean = false
+  isShowAddCommentResponse: boolean = false
 
   constructor(private forumService:ForumService) { }
 
   ngOnInit(): void {
-  }
-
-  get comments() {
-    return this.forumService.comments
   }
 
   clearState(){
@@ -30,6 +31,16 @@ export class CommentsComponent implements OnInit {
     this.forumService.addNewCommentResponse(idComment, this.inputCommentResponse)
 
     this.clearState()
+    this.toggleNewCommentResponse()
+    if (!this.isShowAllComments) { this.toggleAllComments() }
+  }
+
+  toggleAllComments() {
+    this.isShowAllComments = !this.isShowAllComments
+  }
+
+  toggleNewCommentResponse() {
+    this.isShowAddCommentResponse = !this.isShowAddCommentResponse
   }
 
 }

@@ -18,7 +18,6 @@ export class PublishComponent implements OnInit {
 
   valuechange(){
     this.isVisible = true;
-    console.log(this.isVisible);
   }
 
   publishState(){
