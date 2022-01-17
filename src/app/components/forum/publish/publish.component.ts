@@ -16,7 +16,7 @@ export class PublishComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  valuechange(){
+  valueChange(){
     this.isVisible = true;
   }
 
@@ -30,9 +30,7 @@ export class PublishComponent implements OnInit {
     if ( !valueInput.length ) return; 
     
     this.forumService.addNewComment(valueInput);
-
-    this.publishState()
-
+    this.publishState();
   }
 
 }

@@ -38,7 +38,22 @@
         padding: 5px, 15px, 5px, 15px;
         background: #D00170;
         color: white;
-        cursor: pointer;
+    }
+
+    &__template-publish {
+        height: 0;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+    }
+
+    &__template-publish-visible {
+        margin-top: 1rem;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        transition: all 0.5s ease;
     }
 
     

@@ -5,10 +5,13 @@
                [ngClass]="{'container-box__publish--border' : isVisible}"
                placeholder="Escribe Aquí tu estado"
                [(ngModel)]="inputPublish"
-               (click)="valuechange()">
+               (click)="valueChange()">
     </div>
-    <div *ngIf="isVisible" class="text-center margin-top-1">
-        <button class="container-box__button-publish"
-                (click)="handlerAddComment()">Publicar</button>
+    <div [ngClass]="{'container-box__template-publish-visible' : isVisible, 
+                'container-box__template-publish' : !isVisible}" class="text-center">
+        <button *ngIf="isVisible" class="container-box__button-publish" (click)="handlerAddComment()">
+            Publicar
+        </button>
     </div>
+    
 </div>

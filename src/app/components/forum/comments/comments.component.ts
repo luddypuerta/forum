@@ -11,9 +11,10 @@ export class CommentsComponent implements OnInit {
 
   @Input() comment!: Comment;
 
-  inputCommentResponse: string = ''
-  isShowAllComments: boolean = false
-  isShowAddCommentResponse: boolean = false
+  inputCommentResponse: string = '';
+  isShowAllComments: boolean = false;
+  isShowAddCommentResponse: boolean = false;
+  isVisible:boolean = false;
 
   constructor(private forumService:ForumService) { }
 
@@ -21,26 +22,30 @@ export class CommentsComponent implements OnInit {
   }
 
   clearState(){
-    this.inputCommentResponse = ''
+    this.inputCommentResponse = '';
   }
   
   handlerAddNewCommentResponse(idComment: string) {
-    const valueInput = this.inputCommentResponse.trim()
+    const valueInput = this.inputCommentResponse.trim();
     if ( valueInput.length === 0 ) { return; }
 
-    this.forumService.addNewCommentResponse(idComment, this.inputCommentResponse)
+    this.forumService.addNewCommentResponse(idComment, this.inputCommentResponse);
 
-    this.clearState()
-    this.toggleNewCommentResponse()
+    this.clearState();
+    this.toggleNewCommentResponse();
     if (!this.isShowAllComments) { this.toggleAllComments() }
   }
 
   toggleAllComments() {
-    this.isShowAllComments = !this.isShowAllComments
+    this.isShowAllComments = !this.isShowAllComments;
   }
 
   toggleNewCommentResponse() {
-    this.isShowAddCommentResponse = !this.isShowAddCommentResponse
+    this.isShowAddCommentResponse = !this.isShowAddCommentResponse;
+  }
+
+  showReactions() {
+    this.isVisible = !this.isVisible;
   }
 
 }

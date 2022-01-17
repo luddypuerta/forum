@@ -8,7 +8,9 @@
                 <div class="container-post__name-profile">
                     {{ comment.nameSender }}
                 </div>
-                <p class="container-post__time">Hace 45 minutos</p>
+                <p class="container-post__time">
+                    {{ comment.dateFormat }}
+                </p>
                 <p class="container-post__comments">
                     {{ comment.message }}
                 </p>
@@ -26,8 +28,8 @@
         </div>
         <div class="grid-x container-post__container-reaction">
             <div class="cell small-6 container-post__text-reaction">
-                <button> Reaccionar </button>
-                <div class="container-post__text-reaction__icons-reaction">
+                <button (click)="showReactions()"> Reaccionar </button>
+                <div *ngIf="isVisible" class="container-post__text-reaction__icons-reaction">
                     <button>
                         <img src="../../../../assets/images/comments/like.svg" alt="">
                     </button>
@@ -56,26 +58,25 @@
         </div>
     </div>
     <ng-container *ngIf="isShowAllComments">
-        <div *ngFor="let commentResponse of comment.commentsResponse"
-        class="container-comment"
-        >
-           <div class="grid-x margin-bottom-1">
-               <div class="cell small-2 medium-1">
-                   img
-               </div>
-               <div class="cell small-10 medium-11">
-                   <div class="container-comment__name-profile">
-                       {{ commentResponse.nameSender }}
-                   </div>
-                   <p class="container-comment__comments">
-                       {{ commentResponse.message }}
-                   </p>
-                   <p class="container-comment__time">
-                       {{ commentResponse.date }}
-                   </p>
-               </div>
+        <div class="container-comment">
+            <div *ngFor="let commentResponse of comment.commentsResponse" 
+            class="grid-x margin-bottom-1">
+                <div class="cell small-2 medium-1">
+                    img
+                </div>
+                <div class="cell small-10 medium-11">
+                    <div class="container-comment__name-profile">
+                        {{ commentResponse.nameSender }}
+                    </div>
+                    <p class="container-comment__comments">
+                        {{ commentResponse.message }}
+                    </p>
+                    <p class="container-comment__time">
+                        {{ commentResponse.dateFormat }}
+                    </p>
+                </div>
            </div>
-       </div>
+        </div>
     </ng-container>
 
     <div *ngIf="isShowAddCommentResponse" class="container-box">
