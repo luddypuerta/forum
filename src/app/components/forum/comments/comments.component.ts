@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from '../interfaces/comment.interface';
+import { ReactionUser } from '../interfaces/reaction-user.interface';
+import { Reaction } from '../interfaces/reaction.interface';
 import { ForumService } from '../services/forum.service';
 
 @Component({
@@ -54,57 +56,59 @@ export class CommentsComponent implements OnInit {
   processReactions(reaction: string) {
     
     const objReactions =  this.getSrcReactionsIcon(reaction);
-    this.forumService.processReactions(this.comment.id, "1092837465",objReactions.nameReaction, objReactions.pathLocal)
+
+    if (objReactions) {
+      const newReaction: ReactionUser = {
+        name: objReactions.name,
+        srcReactionIcon: objReactions.srcIcon,
+        userId: "1092837465",
+        srcUserIcon: "../../../../assets/images/comments/profile3.svg"
+      };
+
+      this.forumService.processReactions(this.comment.id, newReaction)
+    }
+
   }
 
-  getSrcReactionsIcon(reaction: string){
-    let path = '../../../../assets/images/comments/'
-    let reactions = {
-      pathLocal: "",
-      nameReaction: ""
-    }
+  getSrcReactionsIcon(reaction: string):Reaction | null  {
+    let path = '../../../../assets/images/comments/';
+    let reactions:Reaction | null = null;
+
     switch (reaction.toLocaleLowerCase()) {
       case "like":
-        reactions = {
-          pathLocal: `${path}like.svg`,
-          nameReaction: "Me gusta"
-        }
-        break;
+        return reactions = {
+          name: "Me gusta",
+          srcIcon: `${path}like.svg`
+        };
       case "happy":
-        reactions = {
-          pathLocal: `${path}happy.svg`,
-          nameReaction: "Me divierte"
-        }
-        break;
+        return reactions = {
+          srcIcon: `${path}happy.svg`,
+          name: "Me divierte"
+        };
       case "love":
-        reactions = {
-          pathLocal: `${path}love.svg`,
-          nameReaction: "Me encanta"
-        }
-        break;
+        return reactions = {
+          srcIcon: `${path}love.svg`,
+          name: "Me encanta"
+        };
       case "crying":
-        reactions = {
-          pathLocal: `${path}crying.svg`,
-          nameReaction: "Me deprime"
-        }
-        break;
+        return reactions = {
+          srcIcon: `${path}crying.svg`,
+          name: "Me deprime"
+        };
       case "sad":
-        reactions = {
-          pathLocal: `${path}sad.svg`,
-          nameReaction: "Me entristece"
-        }
-        break;
+        return reactions = {
+          srcIcon: `${path}sad.svg`,
+          name: "Me entristece"
+        };
       case "boring":
-        reactions = {
-          pathLocal: `${path}boring.svg`,
-          nameReaction: "Me aburre"
+        return reactions = {
+          srcIcon: `${path}boring.svg`,
+          name: "Me aburre"
         }
-        break;
     
       default:
-        reactions
-        break;
+        return reactions
     }
-    return reactions;
+    
   }
 }

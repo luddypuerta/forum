@@ -17,14 +17,8 @@
             </div>
             <div class="cell small-6 container-post__like-post">
                 <ng-container *ngIf="comment.quantityReactions > 0; else elseTemplateNoLikes">
-                    <div class="container-post__image-reaction">
-                        <img src="../../../../assets/images/comments/profile1.svg" alt="">
-                    </div>
-                    <div class="container-post__image-reaction">
-                        <img src="../../../../assets/images/comments/profile2.svg" alt="">
-                    </div>
-                    <div class="container-post__image-reaction">
-                        <img src="../../../../assets/images/comments/profile3.svg" alt="">
+                    <div *ngFor="let userReaction of comment.reactions | slice:0:3;" class="container-post__image-reaction">
+                        <img src="{{ userReaction.srcUserIcon }}" alt="">
                     </div>
 			        <span class="container-post__amount-like">
 		                {{ comment.quantityReactions }} likes
@@ -88,7 +82,7 @@
             <div *ngFor="let commentResponse of comment.commentsResponse" 
             class="grid-x margin-bottom-1">
                 <div class="cell small-2 medium-1">
-                    img
+                    <img src="{{ commentResponse.iconSender }}" alt="">
                 </div>
                 <div class="cell small-10 medium-11">
                     <div class="container-comment__name-profile">

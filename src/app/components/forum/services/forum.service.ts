@@ -48,7 +48,7 @@ export class ForumService {
             commentsResponse: []
         }
 
-        this.__comments.push(newComment);
+        this.__comments.unshift(newComment);
         localStorage.setItem('allComments', JSON.stringify(this.__comments));
     }
 
@@ -57,6 +57,7 @@ export class ForumService {
         
         const newCommentResponse: CommentResponse = {
             nameSender: "Liliana",
+            iconSender: "../../../../assets/images/comments/profile3.svg",
             date: currentDate,
             dateFormat: getElapsedTime(currentDate),
             message
@@ -75,31 +76,27 @@ export class ForumService {
         return this.__comments = [...dataForumAPI];
     }
 
-    processReactions(idComment: string, userId: string, nameReactions: string, srcReactionIcon: string) {
-        const newReaction: ReactionUser = {
-            name: nameReactions,
-            srcReactionIcon,
-            userId
-        };
+    processReactions(idComment: string, reactionUser: ReactionUser) {
+       
 
         for (const comment of this.__comments) {
             if (comment.id === idComment) {
                 let reactions = comment.reactions;
                 if (reactions.length === 0) {
-                    reactions.push(newReaction);
-                    comment.selfReaction = newReaction
+                    reactions.push(reactionUser);
+                    comment.selfReaction = reactionUser
                 } else {
-                    const index = reactions.findIndex(element => element.userId);
+                    const index = reactions.findIndex(element => element.userId == reactionUser.userId);
                     if (index == -1) {
-                        reactions.push(newReaction);
-                        comment.selfReaction = newReaction
+                        reactions.push(reactionUser);
+                        comment.selfReaction = reactionUser
                     } else {
-                        if (reactions[index].name == nameReactions) {
+                        if (reactions[index].name == reactionUser.name) {
                             reactions.splice(index,1);
                             comment.selfReaction = undefined
                         } else {
-                            reactions[index].name= nameReactions
-                            comment.selfReaction = newReaction
+                            reactions[index].name= reactionUser.name
+                            comment.selfReaction = reactionUser
                         }
                     }
                 }
