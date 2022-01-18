@@ -20,11 +20,19 @@
             font-weight: bold;
             font-size: 16px;
         }
-
-        &__comment-post, &__like-post {
+    
+        &__like-post {
             color: #D00170;
             font-weight: bold;
             font-size: 12px;
+            display: inline-flex;
+        }
+
+        &__comment-post {
+            color: #D00170;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
         }
     
         &__time {
@@ -58,11 +66,16 @@
             }
         }
     }
+
+    .content-comments {
+        padding: 0rem 2rem;
+    }
     
     .container-comment {
     
         padding: 0.5rem 2rem;
         margin-top: 1rem;
+        transition: all 0.5s ease;
 
         &__name-profile {
             color: #D00170;
@@ -82,21 +95,22 @@
         }
     }
 
+    .content-publish {
+        padding: 0rem 20px;
+    }
+
     .container-box {
-        left: 20px;
-        top: 30px;
-        border-radius: 15px;
         padding: 20px;
+        transition: all 0.5s ease;
     
         &__publish{
             height: 36px;
-            left: 20px;
-            top: 20px;
             border-radius: 100px;
-            padding: 10px 20px 10px 20px;
+            padding: 10px 20px;
             margin: 0;
             border: none;
             color: #878787;
+            font-size: 12px;
         }
     
         &__container-publish{
@@ -114,9 +128,16 @@
             background: #D00170;
             color: white;
             cursor: pointer;
-        }
-    
+        }   
         
+    }
+
+    .container-box-hidden {
+        transition: all 0.5s ease;
+    }
+
+    .container-comment-hidden {
+        transition: all 0.5s ease;
     }
     
 }

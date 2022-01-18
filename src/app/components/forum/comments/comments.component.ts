@@ -34,14 +34,17 @@ export class CommentsComponent implements OnInit {
     this.clearState();
     this.toggleNewCommentResponse();
     if (!this.isShowAllComments) { this.toggleAllComments() }
+    this.isShowAllComments = false;
   }
 
   toggleAllComments() {
     this.isShowAllComments = !this.isShowAllComments;
+    this.isShowAddCommentResponse = false;
   }
 
   toggleNewCommentResponse() {
     this.isShowAddCommentResponse = !this.isShowAddCommentResponse;
+    this.isShowAllComments = false;
   }
 
   showReactions() {

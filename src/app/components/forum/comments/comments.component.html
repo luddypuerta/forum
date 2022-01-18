@@ -16,6 +16,15 @@
                 </p>
             </div>
             <div class="cell small-6 container-post__like-post">
+                <div>
+                    <img src="../../../../assets/images/comments/profile1.svg" alt="">
+                </div>
+                <div>
+                    <img src="../../../../assets/images/comments/profile2.svg" alt="">
+                </div>
+                <div>
+                    <img src="../../../../assets/images/comments/profile3.svg" alt="">
+                </div>
                 {{ comment.reactions }} likes
             </div>
             <div 
@@ -57,8 +66,9 @@
             </div>
         </div>
     </div>
-    <ng-container *ngIf="isShowAllComments">
-        <div class="container-comment">
+    <div [ngClass]="{'container-comment' : isShowAllComments, 
+        'container-comment-hidden' : !isShowAllComments}" class="content-comments">
+        <ng-container *ngIf="isShowAllComments">
             <div *ngFor="let commentResponse of comment.commentsResponse" 
             class="grid-x margin-bottom-1">
                 <div class="cell small-2 medium-1">
@@ -76,23 +86,26 @@
                     </p>
                 </div>
            </div>
-        </div>
-    </ng-container>
+        </ng-container>
+    </div>
 
-    <div *ngIf="isShowAddCommentResponse" class="container-box">
-        <div class="container-box__container-publish">
-            <input type="text" 
-                   class="container-box__publish"
-                   placeholder="Escribe un comentario"
-                   [(ngModel)]="inputCommentResponse">
-        </div>
-        <div class="text-center margin-top-1">
-            <button 
-            class="container-box__button-publish"
-            (click)="handlerAddNewCommentResponse(comment.id)"
-            >
-            Publicar
-        </button>
-        </div>
+    <div  [ngClass]="{'container-box' : isShowAddCommentResponse, 
+    'container-box-hidden' : !isShowAddCommentResponse}" class="content-publish">
+        <ng-container *ngIf="isShowAddCommentResponse">
+            <div class="container-box__container-publish">
+                <input type="text" 
+                       class="container-box__publish"
+                       placeholder="Escribe un comentario"
+                       [(ngModel)]="inputCommentResponse">
+            </div>
+            <div class="text-center margin-top-1">
+                <button 
+                class="container-box__button-publish"
+                (click)="handlerAddNewCommentResponse(comment.id)"
+                >
+                Publicar
+            </button>
+            </div>            
+        </ng-container>
     </div>
 </div>
