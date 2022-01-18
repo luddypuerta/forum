@@ -1,8 +1,8 @@
 <div class="container-principal">
     <div class="container-post">
         <div class="grid-x margin-bottom-1">
-            <div class="cell small-2 medium-1">
-                img
+            <div class="cell small-2 medium-1 container-post__box-image-profile">
+                <img class="container-post__image-profile" src="../../../../assets/images/comments/profile1.svg" alt="">
             </div>
             <div class="cell small-10 medium-11">
                 <div class="container-post__name-profile">
@@ -16,16 +16,23 @@
                 </p>
             </div>
             <div class="cell small-6 container-post__like-post">
-                <div>
-                    <img src="../../../../assets/images/comments/profile1.svg" alt="">
-                </div>
-                <div>
-                    <img src="../../../../assets/images/comments/profile2.svg" alt="">
-                </div>
-                <div>
-                    <img src="../../../../assets/images/comments/profile3.svg" alt="">
-                </div>
-                {{ comment.reactions }} likes
+                <ng-container *ngIf="comment.quantityReactions > 0; else elseTemplateNoLikes">
+                    <div class="container-post__image-reaction">
+                        <img src="../../../../assets/images/comments/profile1.svg" alt="">
+                    </div>
+                    <div class="container-post__image-reaction">
+                        <img src="../../../../assets/images/comments/profile2.svg" alt="">
+                    </div>
+                    <div class="container-post__image-reaction">
+                        <img src="../../../../assets/images/comments/profile3.svg" alt="">
+                    </div>
+			        <span class="container-post__amount-like">
+		                {{ comment.quantityReactions }} likes
+		            </span>
+                </ng-container>
+                <ng-template #elseTemplateNoLikes>
+                    No tienes likes
+                </ng-template>
             </div>
             <div 
             *ngIf="comment.quantityCommentsResponse > 0"
@@ -37,24 +44,32 @@
         </div>
         <div class="grid-x container-post__container-reaction">
             <div class="cell small-6 container-post__text-reaction">
-                <button (click)="showReactions()"> Reaccionar </button>
+                <button (click)="showReactions()"> 
+                <ng-container *ngIf="comment.selfReaction && comment.selfReaction.name != ''; else elseTemplate">
+                    {{ comment.selfReaction.srcReactionIcon }} {{ comment.selfReaction.name }}
+                </ng-container>
+                <ng-template #elseTemplate>
+                    Reaccionar
+                </ng-template>
+                    
+                </button>
                 <div *ngIf="isVisible" class="container-post__text-reaction__icons-reaction">
-                    <button>
+                    <button (click)="processReactions('like')">
                         <img src="../../../../assets/images/comments/like.svg" alt="">
                     </button>
-                    <button>
+                    <button (click)="processReactions('happy')">
                         <img src="../../../../assets/images/comments/happy.svg" alt="">
                     </button>
-                    <button>
+                    <button (click)="processReactions('love')">
                         <img src="../../../../assets/images/comments/love.svg" alt="">
                     </button>
-                    <button>
+                    <button (click)="processReactions('crying')">
                         <img src="../../../../assets/images/comments/crying.svg" alt="">
                     </button>
-                    <button>
+                    <button (click)="processReactions('sad')">
                         <img src="../../../../assets/images/comments/sad.svg" alt="">
                     </button>
-                    <button>
+                    <button (click)="processReactions('boring')">
                         <img src="../../../../assets/images/comments/boring.svg" alt="">
                     </button>
                 </div>

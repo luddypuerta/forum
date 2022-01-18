@@ -1,4 +1,5 @@
 import { CommentResponse } from "./comment-response.interface";
+import { ReactionUser } from "./reaction-user.interface";
 
 export interface Comment {
     id:string,
@@ -6,7 +7,9 @@ export interface Comment {
     date: number,
     dateFormat: string,
     message: string,
-    reactions: number,
+    quantityReactions: number,
+    reactions:ReactionUser[], 
     quantityCommentsResponse: number,
-    commentsResponse: CommentResponse[]
+    commentsResponse: CommentResponse[],
+    selfReaction?: ReactionUser
 }

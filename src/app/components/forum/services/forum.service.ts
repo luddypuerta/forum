@@ -3,6 +3,7 @@ import { dataForumAPI } from "src/app/dataForum";
 import { CommentResponse } from "../interfaces/comment-response.interface";
 import { Comment } from "../interfaces/comment.interface";
 import { getElapsedTime, getCurrentDateInNumber } from "src/app/utils/date.utilities";
+import { ReactionUser } from "../interfaces/reaction-user.interface";
 
 @Injectable()
 export class ForumService {
@@ -41,7 +42,8 @@ export class ForumService {
             date: currentDate,
             dateFormat:getElapsedTime(currentDate),
             message,
-            reactions: 0,
+            quantityReactions: 0,
+            reactions: [],
             quantityCommentsResponse: 0,
             commentsResponse: []
         }
@@ -71,5 +73,40 @@ export class ForumService {
 
     getAllCommentAPI(): Comment[] {
         return this.__comments = [...dataForumAPI];
+    }
+
+    processReactions(idComment: string, userId: string, nameReactions: string, srcReactionIcon: string) {
+        const newReaction: ReactionUser = {
+            name: nameReactions,
+            srcReactionIcon,
+            userId
+        };
+
+        for (const comment of this.__comments) {
+            if (comment.id === idComment) {
+                let reactions = comment.reactions;
+                if (reactions.length === 0) {
+                    reactions.push(newReaction);
+                    comment.selfReaction = newReaction
+                } else {
+                    const index = reactions.findIndex(element => element.userId);
+                    if (index == -1) {
+                        reactions.push(newReaction);
+                        comment.selfReaction = newReaction
+                    } else {
+                        if (reactions[index].name == nameReactions) {
+                            reactions.splice(index,1);
+                            comment.selfReaction = undefined
+                        } else {
+                            reactions[index].name= nameReactions
+                            comment.selfReaction = newReaction
+                        }
+                    }
+                }
+                comment.quantityReactions = comment.reactions.length;
+                break;
+            }
+        }
+        localStorage.setItem('allComments', JSON.stringify(this.__comments));
     }
 }

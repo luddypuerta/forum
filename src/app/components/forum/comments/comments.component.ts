@@ -51,4 +51,36 @@ export class CommentsComponent implements OnInit {
     this.isVisible = !this.isVisible;
   }
 
+  processReactions(reaction: string) {
+    this.forumService.processReactions(this.comment.id, "1092837465",reaction, this.getSrcReactionsIcon(reaction))
+  }
+
+  getSrcReactionsIcon(reaction: string){
+    let pathLocal = '../../../../assets/images/comments/'
+    switch (reaction.toLocaleLowerCase()) {
+      case "like":
+        pathLocal+="like.svg";
+        break;
+      case "happy":
+        pathLocal+="like.svg";
+        break;
+      case "love":
+        pathLocal+="like.svg";
+        break;
+      case "crying":
+        pathLocal+="like.svg";
+        break;
+      case "sad":
+        pathLocal+="like.svg";
+        break;
+      case "boring":
+        pathLocal+="like.svg";
+        break;
+    
+      default:
+        pathLocal="";
+        break;
+    }
+    return pathLocal;
+  }
 }
