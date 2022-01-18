@@ -1,15 +1,19 @@
-
-import * as moment from 'moment';
-
+import { getUnixTime, formatDistanceToNowStrict, fromUnixTime } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 export function getElapsedTime(date: number): string {
-    let dateinitial = moment.utc(date * 1000);
-    dateinitial.locale("es");
-    return dateinitial.fromNow();
+    const dateFormat = fromUnixTime(date);
+    const result = formatDistanceToNowStrict(
+        dateFormat,
+        {locale: es}
+      );
+      if (result.includes("segundo")) {
+          return "Justo ahora";
+      } 
+
+    return `Hace ${result}`;
 }
 
 export function getCurrentDateInNumber(): number {
-    const nowDate = moment().utc();
-    nowDate.locale("es");
-    return nowDate.unix();
+    return getUnixTime(new Date());
 }
