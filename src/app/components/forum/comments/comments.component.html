@@ -46,7 +46,8 @@
             <div class="cell small-6 container-post__text-reaction">
                 <button (click)="showReactions()"> 
                 <ng-container *ngIf="comment.selfReaction && comment.selfReaction.name != ''; else elseTemplate">
-                    {{ comment.selfReaction.srcReactionIcon }} {{ comment.selfReaction.name }}
+                    <img src="{{ comment.selfReaction.srcReactionIcon }}" alt="">
+                    <span class="container-post__item-text-reaction"> {{ comment.selfReaction.name }} </span>
                 </ng-container>
                 <ng-template #elseTemplate>
                     Reaccionar

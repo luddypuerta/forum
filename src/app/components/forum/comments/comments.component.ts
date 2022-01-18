@@ -52,35 +52,59 @@ export class CommentsComponent implements OnInit {
   }
 
   processReactions(reaction: string) {
-    this.forumService.processReactions(this.comment.id, "1092837465",reaction, this.getSrcReactionsIcon(reaction))
+    
+    const objReactions =  this.getSrcReactionsIcon(reaction);
+    this.forumService.processReactions(this.comment.id, "1092837465",objReactions.nameReaction, objReactions.pathLocal)
   }
 
   getSrcReactionsIcon(reaction: string){
-    let pathLocal = '../../../../assets/images/comments/'
+    let path = '../../../../assets/images/comments/'
+    let reactions = {
+      pathLocal: "",
+      nameReaction: ""
+    }
     switch (reaction.toLocaleLowerCase()) {
       case "like":
-        pathLocal+="like.svg";
+        reactions = {
+          pathLocal: `${path}like.svg`,
+          nameReaction: "Me gusta"
+        }
         break;
       case "happy":
-        pathLocal+="like.svg";
+        reactions = {
+          pathLocal: `${path}happy.svg`,
+          nameReaction: "Me divierte"
+        }
         break;
       case "love":
-        pathLocal+="like.svg";
+        reactions = {
+          pathLocal: `${path}love.svg`,
+          nameReaction: "Me encanta"
+        }
         break;
       case "crying":
-        pathLocal+="like.svg";
+        reactions = {
+          pathLocal: `${path}crying.svg`,
+          nameReaction: "Me deprime"
+        }
         break;
       case "sad":
-        pathLocal+="like.svg";
+        reactions = {
+          pathLocal: `${path}sad.svg`,
+          nameReaction: "Me entristece"
+        }
         break;
       case "boring":
-        pathLocal+="like.svg";
+        reactions = {
+          pathLocal: `${path}boring.svg`,
+          nameReaction: "Me aburre"
+        }
         break;
     
       default:
-        pathLocal="";
+        reactions
         break;
     }
-    return pathLocal;
+    return reactions;
   }
 }
