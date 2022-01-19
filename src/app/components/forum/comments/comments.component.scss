@@ -61,6 +61,8 @@
         &__comments {
             line-height: 16px;
             font-size: 12px;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     
         &__text-reaction {
@@ -92,6 +94,10 @@
 
     .content-comments {
         padding: 0rem 2rem;
+        
+        &__image-profile {
+            width: 2rem;
+        }
     }
     
     .container-comment {

@@ -39,9 +39,28 @@ export const dataForumAPI: Comment[] = [
         date: 1642204250,
         dateFormat: "",
         message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen ",
-        quantityReactions: 0,
+        quantityReactions: 3,
+        reactions:[
+            {
+                name:"like",
+                userId:"1432",
+                srcReactionIcon:"../../../../assets/images/comments/like.svg",
+                srcUserIcon:"../../../../assets/images/comments/profile1.svg"
+            },
+            {
+                name:"like",
+                userId:"343",
+                srcReactionIcon:"../../../../assets/images/comments/like.svg",
+                srcUserIcon:"../../../../assets/images/comments/profile2.svg"
+            },
+            {
+                name:"like",
+                userId:"3443",
+                srcReactionIcon:"../../../../assets/images/comments/like.svg",
+                srcUserIcon:"../../../../assets/images/comments/profile2.svg"
+            }
+        ],
         quantityCommentsResponse: 0,
-        reactions:[],
         commentsResponse: []
     }
 ]
